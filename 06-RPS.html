@@ -10,29 +10,21 @@
   <body>
     <p>Rock Paper Scissors</p>
     <button onclick = "
-        const compmove = pickMove();
-        const result = getResult('Rock', compmove);
-        
-        alert(`You picked Rock. Comp picked ${compmove}. ${result}`)
-
+        getResult('Rock');
     ">Rock</button>
 
     <button onclick = "
-        const compmove = pickMove();
-        const result = getResult('Paper', compmove);
+        getResult('Paper');
 
-        alert(`You picked Paper. Comp picked ${compmove}. ${result}`)
     ">Paper</button>
 
     <button onclick = "
-        const compmove = pickMove();
-        const result = getResult('Scissors', compmove);
-
-        alert(`You picked Scissors. Comp picked ${compmove}. ${result}`)
+        getResult('Scissors');
     ">Scissors</button>
 
     <script>
-    function getResult(player, compmove){
+    function getResult(player){
+        const compmove = pickMove();
         let result = '';
         if (player === 'Rock'){
             if (compmove === 'Rock'){
@@ -67,6 +59,7 @@
                 result = 'You lose';
             }
         }
+        alert(`You picked ${player}. Comp picked ${compmove}. ${result}`)
         return result;
     }
 
