@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RPS</title>
+  </head>
+  <body>
+    <p>Rock Paper Scissors</p>
+    <button onclick = "
+        const compmove = pickMove();
+        const result = getResult('Rock', compmove);
+        
+        alert(`You picked Rock. Comp picked ${compmove}. ${result}`)
+
+    ">Rock</button>
+
+    <button onclick = "
+        const compmove = pickMove();
+        const result = getResult('Paper', compmove);
+
+        alert(`You picked Paper. Comp picked ${compmove}. ${result}`)
+    ">Paper</button>
+
+    <button onclick = "
+        const compmove = pickMove();
+        const result = getResult('Scissors', compmove);
+
+        alert(`You picked Scissors. Comp picked ${compmove}. ${result}`)
+    ">Scissors</button>
+
+    <script>
+    function getResult(player, compmove){
+        let result = '';
+        if (player === 'Rock'){
+            if (compmove === 'Rock'){
+                result = 'Tie';
+            }
+            else if (compmove === 'Scissors'){
+                result = 'You win';
+            }
+            else{
+                result = 'You lose';
+            }
+        }
+        else if (player === 'Paper'){
+            if (compmove === 'Paper'){
+                result = 'Tie';
+            }
+            else if (compmove === 'Rock'){
+                result = 'You win';
+            }
+            else{
+                result = 'You lose';
+            }
+        }
+        else{
+            if (compmove === 'Scissors'){
+                result = 'Tie';
+            }
+            else if (compmove === 'Paper'){
+                result = 'You win';
+            }
+            else{
+                result = 'You lose';
+            }
+        }
+        return result;
+    }
+
+    function pickMove(){
+        const randomNum = Math.random();
+        let choice = '';
+
+        if (randomNum >= 0.6){
+            choice = 'Scissors';
+        }
+        else if(randomNum >= 0.3){
+            choice = 'Rock';
+        }
+        else{
+            choice = 'Paper';
+        }
+        
+        console.log(choice)
+        return choice
+      }
+    </script>
+  </body>
+</html>
