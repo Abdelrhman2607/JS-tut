@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RPS</title>
+  </head>
+  <body>
+    <p>Rock Paper Scissors</p>
+    <button onclick = "
+        getResult('Rock');
+    ">Rock</button>
+
+    <button onclick = "
+        getResult('Paper');
+
+    ">Paper</button>
+
+    <button onclick = "
+        getResult('Scissors');
+    ">Scissors</button>
+
+    <button onclick = "
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+        alert(`Current score:\nWins:${score.wins}\nLosses:${score.losses}\nTies:${score.ties}`);
+        localStorage.removeItem('score');
+    ">Reset</button>
+
+    <script>
+    let score = (JSON.parse(localStorage.getItem('score'))) || {'wins': 0, 'losses': 0, 'ties': 0};
+    
+    console.log(score)
+    function getResult(player){
+        const compmove = pickMove();
+        let result = '';
+        if (player === 'Rock'){
+            if (compmove === 'Rock'){
+                result = 'Tie';
+            }
+            else if (compmove === 'Scissors'){
+                result = 'You win';
+            }
+            else{
+                result = 'You lose';
+            }
+        }
+        else if (player === 'Paper'){
+            if (compmove === 'Paper'){
+                result = 'Tie';
+            }
+            else if (compmove === 'Rock'){
+                result = 'You win';
+            }
+            else{
+                result = 'You lose';
+            }
+        }
+        else{
+            if (compmove === 'Scissors'){
+                result = 'Tie';
+            }
+            else if (compmove === 'Paper'){
+                result = 'You win';
+            }
+            else{
+                result = 'You lose';
+            }
+        }
+        if (result === 'You win'){
+            score.wins++;
+        }
+        else if (result === 'You lose'){
+            score.losses++;
+        }
+        else{
+            score.ties++;
+        }
+
+        localStorage.setItem('score', JSON.stringify(score));
+
+        alert(`You picked ${player}. Comp picked ${compmove}. ${result}\nCurrent score:\nWins:${score.wins}\nLosses:${score.losses}\nTies:${score.ties}`)
+        return result;
+    }
+
+    function pickMove(){
+        const randomNum = Math.random();
+        let choice = '';
+
+        if (randomNum >= 0.6){
+            choice = 'Scissors';
+        }
+        else if(randomNum >= 0.3){
+            choice = 'Rock';
+        }
+        else{
+            choice = 'Paper';
+        }
+        
+        console.log(choice)
+        return choice
+      }
+    </script>
+  </body>
+</html>
