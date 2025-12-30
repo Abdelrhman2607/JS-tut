@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>RPS</title>
+
+    <link href = "10-RPS.css" rel = "stylesheet">
+  </head>
+  <body>
+    <p class = "title">Rock Paper Scissors</p>
+    <button class = 'move-btn' onclick = "
+        getResult('Rock');
+    "><img class = 'move' src = "rock-emoji.png"></button>
+
+    <button class = 'move-btn' onclick = "
+        getResult('Paper');
+
+    "><img class = 'move' src = "paper-emoji.png"></button>
+
+    <button class = 'move-btn' onclick = "
+        getResult('Scissors');
+    "><img class = 'move' src = "scissors-emoji.png"></button>
+    
+    <p class = "js-result result"></p>
+    <p class = "js-moves">Pick a move</p>
+    <p class = "js-score"></p>
+
+    <button class = 'reset' onclick = "
+        score.wins = 0;
+        score.losses = 0;
+        score.ties = 0;
+
+        updateScoreElement();
+        localStorage.removeItem('score');
+    ">Reset</button>
+
+    <script src = "10-RPS.js"></script>
+  </body>
+</html>

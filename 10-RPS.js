@@ -1,42 +1,4 @@
-<!DOCTYPE html>
-
-<html lang = "en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>RPS</title>
-  </head>
-  <body>
-    <p>Rock Paper Scissors</p>
-    <button onclick = "
-        getResult('Rock');
-    ">Rock</button>
-
-    <button onclick = "
-        getResult('Paper');
-
-    ">Paper</button>
-
-    <button onclick = "
-        getResult('Scissors');
-    ">Scissors</button>
-    
-    <p class = "js-result"></p>
-    <p class = "js-moves">Pick a move</p>
-    <p class = "js-score"></p>
-
-    <button onclick = "
-        score.wins = 0;
-        score.losses = 0;
-        score.ties = 0;
-
-        updateScoreElement();
-        localStorage.removeItem('score');
-    ">Reset</button>
-
-    <script>
-    let score = (JSON.parse(localStorage.getItem('score'))) || {'wins': 0, 'losses': 0, 'ties': 0};
+let score = (JSON.parse(localStorage.getItem('score'))) || {'wins': 0, 'losses': 0, 'ties': 0};
     updateScoreElement();
 
     function updateScoreElement(){
@@ -92,8 +54,8 @@
         localStorage.setItem('score', JSON.stringify(score));
 
         updateScoreElement();
-        document.querySelector('.js-moves').innerHTML = `You: ${player} | Comp: ${compmove}`;
         document.querySelector('.js-result').innerHTML = `${result}`;
+        document.querySelector('.js-moves').innerHTML = `You: <img class = 'move' src = "${player.toLowerCase()}-emoji.png"> <img class = 'move' src = "${compmove.toLowerCase()}-emoji.png"> :Comp`;
 
         return result;
     }
@@ -112,9 +74,6 @@
             choice = 'Paper';
         }
         
-        console.log(choice)
-        return choice
+        console.log(choice);
+        return choice;
       }
-    </script>
-  </body>
-</html>
