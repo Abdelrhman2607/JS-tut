@@ -77,3 +77,26 @@ let score = (JSON.parse(localStorage.getItem('score'))) || {'wins': 0, 'losses':
         console.log(choice);
         return choice;
       }
+
+let autoOn = false;
+let intervalID;
+
+    function autoPlay(){
+        if (!autoOn){
+            autoOn = true;
+            intervalID = setInterval(() => {
+                const playerMove = pickMove();
+                getResult(playerMove);
+            }, 1000);
+        }
+        else{
+            clearInterval(intervalID);
+            autoOn = false;
+        }
+    }
+
+document.querySelector('.js-rock').addEventListener("click", () => {getResult('Rock');});
+
+document.body.addEventListener("keydown", (event)=> {if(event.key === 'r'){getResult('Rock');}})
+document.body.addEventListener("keydown", (event)=> {if(event.key === 'p'){getResult('Paper');}})
+document.body.addEventListener("keydown", (event)=> {if(event.key === 's'){getResult('Scissors');}})

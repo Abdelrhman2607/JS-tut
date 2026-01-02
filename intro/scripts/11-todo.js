@@ -1,23 +1,27 @@
 const todoList = [{name: 'A', date: '2026-10-10'}, {name: 'B', date: '2026-07-01'}];
 renderTodoList();
 
+document.querySelector(".js-add-btn").addEventListener("click",() => {addTodo();});
+
 function renderTodoList(){
     let todoListHTML = '';
 
-    for (let i = 0; i < todoList.length; i++){
-        const todoObject = todoList[i];
+    todoList.forEach((todoObject, i) => {
         const {name} = todoObject;
         const {date} = todoObject;
         const html = `
             <div>${name}</div>
             <div> ${date}</div>
-            <button class = "delete-btn" onclick = "
+            <button class = "delete-btn js-delete-btn" onclick = "
                 todoList.splice(${i}, 1);renderTodoList();
             ">Delete</button>
             `;
         todoListHTML += html;
-    }
+    });
     document.querySelector('.js-todo-list').innerHTML = todoListHTML;
+    document.querySelectorAll(".js-delete-button").forEach((btn, i) => {
+        btn.addEventListener("click", ()=> {addTodo();});
+    })
 }
 
 function addTodo(){
