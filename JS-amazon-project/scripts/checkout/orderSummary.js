@@ -36,7 +36,7 @@ export function renderOrderSummary(){
                     ${matchingProduct.name}
                     </div>
                     <div class="product-price">
-                    ${matchingProduct.priceCents / 100}
+                    ${matchingProduct.getPrice()}
                     </div>
                     <div class="js-product-quantity-${matchingProduct.id} product-quantity">
                     <span>
