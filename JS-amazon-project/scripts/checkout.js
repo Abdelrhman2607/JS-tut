@@ -1,23 +1,38 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 import { loadProductsFetch } from "../data/products.js";
-import { loadCart } from "../data/cart.js";
+import { loadCart, loadFromStorage } from "../data/cart.js";
 // import '../data/cart-class.js';
 // import '../data/backend-intro.js';
 
-Promise.all([
-    loadProductsFetch(),
-    
-    new Promise((resolve) => {
+async function loadPage(){
+    await loadProductsFetch();
+
+    await new Promise((resolve) => {
         loadCart(() => {
             resolve();
         });
-    })
+    });
 
-]).then(() => {
     renderOrderSummary();
     renderPaymentSummary();
-});
+}
+
+loadPage();
+
+// Promise.all([
+//     loadProductsFetch(),
+
+//     new Promise((resolve) => {
+//         loadCart(() => {
+//             resolve();
+//         });
+//     })
+
+// ]).then(() => {
+//     renderOrderSummary();
+//     renderPaymentSummary();
+// });
 
 // new Promise((resolve) => {
 //     loadProducts(() => {
