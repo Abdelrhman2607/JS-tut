@@ -56,7 +56,10 @@ export function loadProductsFetch(){
     });
     console.log('load products');
 
+  }).catch((error) => {
+    console.log(":O");
   });
+
   return promise;
 }
 
@@ -77,9 +80,14 @@ export function loadProducts(fun) {
     fun();
   });
 
+  xhr.addEventListener('error', (error) => {
+    console.log(":O");
+  })
+
   xhr.open('GET', 'https://supersimplebackend.dev/products');
   xhr.send();
 }
+
 /*
 export const products = [
   {
